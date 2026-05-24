@@ -33,7 +33,7 @@ public:
     void buffCreaturesNotType(int amt, std::string);
     void destroyDeadCreatures();
     void loadBoardstate(std::string fileName);
-    void run(Action initialAction, int maxTriggers);
+    void run(Action initialAction, int maxTriggers, std::string outputFile);
     int getNumTriggers() const;
 };
 

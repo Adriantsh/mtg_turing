@@ -22,3 +22,5 @@ int main() {
     test_first_trigger_on_stack();
 
     std::cout << "\nAll tests completed." << std::endl;
+    return 0;
+}

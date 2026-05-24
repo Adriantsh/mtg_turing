@@ -2,15 +2,16 @@
 
 int main() {
 
-    std::string initBoardFile = "initialBoardState.txt";
+    std::string initialBoardFile = "initialBoardState.txt";
+    std::string outputFile = "runlog.txt";
 
     Game game;
-    game.loadBoardstate(initBoardFile);
+    game.loadBoardstate(initialBoardFile);
 
     Action initialAction;
 
-    int maxTriggers = 20;
-    game.run(initialAction, maxTriggers);
+    int maxActions = 20;
+    game.run(initialAction, maxActions, outputFile);
 
     return 0;
 }
