@@ -1,0 +1,28 @@
+// Holds objects that live on the battlefield, are either token or non-token.
+// Creature class is derived from this class
+// Permanents have a type and a set of subtypes, and a bool to determine if they are tokens
+
+#ifndef PERMANENT_H
+#define PERMANENT_H
+
+#include <string>
+#include <set>
+
+class Permanent {
+private:
+    std::string type;
+    std::set<std::string> subtypes;
+    bool token;
+public:
+    Permanent(std::string type, std::set<std::string> subtypes, bool isToken);
+    ~Permanent();
+    void displayTypes() const;
+    std::string getType() const;
+    std::string getSubtypes() const;
+    bool isType(std::string type) const;
+    bool isSubtype(std::string subtype) const;
+    void addSubtype(std::string subtype);
+    bool isToken() const;
+};
+
+#endif
