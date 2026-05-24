@@ -18,7 +18,7 @@ public:
     ~Permanent();
     void displayTypes() const;
     std::string getType() const;
-    std::string getSubtypes() const;
+    std::set<std::string> getSubtypes() const;
     bool isType(std::string type) const;
     bool isSubtype(std::string subtype) const;
     void addSubtype(std::string subtype);

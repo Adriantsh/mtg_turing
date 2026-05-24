@@ -20,10 +20,6 @@ public:
     ~Event();
     void display() const;
     std::string getEventAction() const;
-    std::string getEventType() const;
-    std::string getEventSubTypes() const;
-    bool isEventType(std::string) const;
-    bool isEventSubType(std::string) const;
 };
 
 #endif 

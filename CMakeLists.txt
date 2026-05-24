@@ -18,10 +18,25 @@ add_library(mtg_lib
     src/Trigger.h
     src/Event.h
     src/Action.h
+    src/Event.cpp 
+    src/Permanent.cpp
+    src/Action.cpp
+    src/Trigger.cpp
+    src/Creature.cpp
+    src/Stack.cpp
 )
 
 # Create main executable
-add_executable(mtg_turing src/main.cpp src/Game.cpp)
+add_executable(mtg_turing 
+    src/main.cpp 
+    src/Game.cpp 
+    src/Event.cpp 
+    src/Permanent.cpp
+    src/Action.cpp
+    src/Trigger.cpp
+    src/Creature.cpp
+    src/Stack.cpp
+)
 target_link_libraries(mtg_turing mtg_lib)
 
 # Create test executable

@@ -25,9 +25,6 @@ public:
     void displayBattlefield() const;
     void displayGraveyard() const;
     void newPermanent(std::string type);
-    void newCreature(int toughness);
-    void newCreature(int toughness, std::string subtype);
-    void newCreature(int toughness, std::set<std::string> subtypes);
     bool destroyPermanent(int id);
     void buffCreaturesType(int amt, std::string);
     void buffCreaturesNotType(int amt, std::string);
