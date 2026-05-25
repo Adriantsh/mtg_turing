@@ -1,17 +1,30 @@
 #include "Permanent.h"
+#include <iostream>
+
+Permanent::Permanent()
+    : type("None"), subtypes({}), token(true) {}
 
 Permanent::Permanent(std::string type, std::set<std::string> subtypes, bool isToken) 
     : type(type), subtypes(subtypes), token(isToken) {}
     
 Permanent::~Permanent() {}
 
-void Permanent::displayTypes() const {
-    // TODO: implement later
+void Permanent::displaySubtypes() const {
+    if (subtypes.empty())
+        std::cout << "None";
+    else {
+        for (auto it = subtypes.begin(); it != subtypes.end(); it++) {
+            std::cout << *it;
+            if (it != --subtypes.end()) {
+                std::cout << ",";
+            }
+            std::cout << " ";
+        }
+    }
 }
 
 std::string Permanent::getType() const {
-    // TODO: implement later
-    return "";
+    return type;
 }
 
 std::set<std::string> Permanent::getSubtypes() const {
@@ -19,9 +32,8 @@ std::set<std::string> Permanent::getSubtypes() const {
     return {};
 }
 
-bool Permanent::isType(std::string type) const {
-    // TODO: implement later
-    return true;
+bool Permanent::isType(std::string testType) const {
+    return (type == testType);
 }
 
 bool Permanent::isSubtype(std::string subtype) const {
@@ -34,6 +46,9 @@ void Permanent::addSubtype(std::string subtype) {
 }
 
 bool Permanent::isToken() const {
-    // TODO: implement later
-    return true; 
+    return token; 
+}
+
+int Permanent::getToughness() const {
+    return 0;
 }

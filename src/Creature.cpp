@@ -1,15 +1,15 @@
 #include "Creature.h"
 
-Creature::Creature(std::string type, std::set<std::string> subtypes, bool isToken, int toughness)
+Creature::Creature() {}
+Creature::Creature(std::string type, std::set<std::string> subtypes, bool isToken, int tough)
     : Permanent(type, subtypes, isToken) {
-        this->toughness = toughness;
+        toughness = tough;
 }
 
 Creature::~Creature() {}
 
 int Creature::getToughness() const {
-    // TODO: implement this later
-    return 0;
+    return toughness;
 }
 
 void Creature::incrementToughness(int amt) {

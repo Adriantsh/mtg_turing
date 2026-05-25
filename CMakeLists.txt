@@ -18,12 +18,15 @@ add_library(mtg_lib
     src/Trigger.h
     src/Event.h
     src/Action.h
+    src/Zone.h
     src/Event.cpp 
     src/Permanent.cpp
     src/Action.cpp
     src/Trigger.cpp
     src/Creature.cpp
     src/Stack.cpp
+    src/Zone.cpp
+    src/initialBoardState.txt
 )
 
 # Create main executable
