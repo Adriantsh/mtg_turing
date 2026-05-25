@@ -9,32 +9,29 @@
 #include "Stack.h"
 #include "Event.h"
 #include "Action.h"
+#include "Zone.h"
 #include <map>
 #include <iterator>
 #include <set>
 
 class Game {
 private:
-    std::map<int, Permanent> battlefield;
-    std::map<int, Permanent> graveyard;
-    int ids_used;
-    int numTriggers;
+    Zone battlefield;
+    Zone graveyard;
+    int numActions;
 public:
     Game(); 
     ~Game();
-    void displayBattlefield() const;
-    void displayGraveyard() const;
-    void newPermanent(std::string type);
-    void newCreature(int toughness);
-    void newCreature(int toughness, std::string subtype);
-    void newCreature(int toughness, std::set<std::string> subtypes);
-    bool destroyPermanent(int id);
-    void buffCreaturesType(int amt, std::string);
-    void buffCreaturesNotType(int amt, std::string);
-    void destroyDeadCreatures();
+
+    class FileNotFound {};
+
+    void display() const;
     void loadBoardstate(std::string fileName);
+    void destroyDeadCreatures();
     void run(Action initialAction, int maxTriggers, std::string outputFile);
-    int getNumTriggers() const;
+    int getNumActions() const;
+    const Zone& getBattle() const;   // For testing only
+    const Zone& getGrave() const;   // For testing only
 };
 
 #endif 

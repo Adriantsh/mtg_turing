@@ -14,15 +14,18 @@ private:
     std::set<std::string> subtypes;
     bool token;
 public:
+    Permanent();
     Permanent(std::string type, std::set<std::string> subtypes, bool isToken);
-    ~Permanent();
-    void displayTypes() const;
+    virtual ~Permanent();
+    void displaySubtypes() const;
     std::string getType() const;
-    std::string getSubtypes() const;
+    std::set<std::string> getSubtypes() const;
     bool isType(std::string type) const;
     bool isSubtype(std::string subtype) const;
     void addSubtype(std::string subtype);
     bool isToken() const;
+    virtual int getToughness() const;
+    int getNumSubtypes() const;
 };
 
 #endif

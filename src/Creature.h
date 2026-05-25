@@ -10,9 +10,10 @@ class Creature : public Permanent {
 private:
     int toughness;
 public:
+    Creature();
     Creature(std::string type, std::set<std::string> subtypes, bool isToken, int toughness);
     ~Creature();
-    int getToughness() const;
+    virtual int getToughness() const override;
     void incrementToughness(int amt);
 };
 

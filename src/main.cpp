@@ -1,17 +1,20 @@
 #include "Game.h"
+#include <iostream>
 
 int main() {
 
-    std::string initialBoardFile = "initialBoardState.txt";
-    std::string outputFile = "runlog.txt";
+    std::string initialBoardFile = "src/initialBoardState.txt";
 
+    // std::string outputFile = "runlog.txt";
+    
     Game game;
     game.loadBoardstate(initialBoardFile);
+    game.display();
 
-    Action initialAction;
+    // Action initialAction;
 
-    int maxActions = 20;
-    game.run(initialAction, maxActions, outputFile);
+    // int maxActions = 20;
+    // game.run(initialAction, maxActions, outputFile);
 
     return 0;
 }

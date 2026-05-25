@@ -10,13 +10,12 @@
 
 #include <string>
 #include <set>
-#include "Event.h"
 
 class Action {
 private:
     std::set<std::string> type;
     std::set<std::string> subtypes;
-    // std::set<Event> eventsCaused;
+    std::set<int> eventKeys;
 public:
     Action();
     ~Action();

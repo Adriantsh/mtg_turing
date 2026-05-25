@@ -6,17 +6,18 @@
 #define TRIGGER_H
 
 #include "Event.h"
+#include "Action.h"
 #include <string>
 #include <set>
 
 class Trigger {
 private:
     Event inputEvent;
-    char outputAction;
+    Action outputAction;
 public:
     Trigger();
     ~Trigger();
-    bool isTriggered(Event);
+    bool isTriggered(Event) const;
     void runAction();
 };
 #endif

@@ -18,10 +18,28 @@ add_library(mtg_lib
     src/Trigger.h
     src/Event.h
     src/Action.h
+    src/Zone.h
+    src/Event.cpp 
+    src/Permanent.cpp
+    src/Action.cpp
+    src/Trigger.cpp
+    src/Creature.cpp
+    src/Stack.cpp
+    src/Zone.cpp
+    src/initialBoardState.txt
 )
 
 # Create main executable
-add_executable(mtg_turing src/main.cpp src/Game.cpp)
+add_executable(mtg_turing 
+    src/main.cpp 
+    src/Game.cpp 
+    src/Event.cpp 
+    src/Permanent.cpp
+    src/Action.cpp
+    src/Trigger.cpp
+    src/Creature.cpp
+    src/Stack.cpp
+)
 target_link_libraries(mtg_turing mtg_lib)
 
 # Create test executable
@@ -29,5 +47,6 @@ add_executable(tests tests/test_main.cpp)
 target_link_libraries(tests mtg_lib)
 
 # Register tests with CTest
-add_test(NAME RecipeTests COMMAND tests)
+add_test(NAME MtgTests COMMAND tests)
+
 
