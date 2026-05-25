@@ -26,7 +26,7 @@ void Zone::buffCreaturesType(int amt, std::string) {
 void Zone::buffCreaturesNotType(int amt, std::string) {
     // TODO: implement later
 }
-void Zone::copyPermanentAt(int id, Permanent& newPerm) {
+void Zone::copyPermanentAt(int id, Permanent* permPtr) {
     // TODO: implement later
 }
 
@@ -71,11 +71,14 @@ bool Zone::isDead(int id) {
     // TODO: implement later  
 }
 
-bool Zone::isToken(int id) {
-    return true;
-    // TODO: implement later  
+bool Zone::isToken(int index) {
+    return board[index]->isToken();
 }
 
-int Zone::getNumPerms() {
-    return numPerms;
+int Zone::getNumPerms() const {
+    return board.size();
+}
+
+const std::vector<Permanent*>& Zone::getBoard() const {
+    return board;
 }

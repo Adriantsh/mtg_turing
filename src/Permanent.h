@@ -25,6 +25,7 @@ public:
     void addSubtype(std::string subtype);
     bool isToken() const;
     virtual int getToughness() const;
+    int getNumSubtypes() const;
 };
 
 #endif

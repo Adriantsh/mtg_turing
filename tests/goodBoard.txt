@@ -1,0 +1,2 @@
+Creature 2 t Bear Cat ; b
+Artifact n ; g

@@ -22,11 +22,16 @@ private:
 public:
     Game(); 
     ~Game();
+
+    class FileNotFound {};
+
     void display() const;
     void loadBoardstate(std::string fileName);
     void destroyDeadCreatures();
     void run(Action initialAction, int maxTriggers, std::string outputFile);
     int getNumActions() const;
+    const Zone& getBattle() const;   // For testing only
+    const Zone& getGrave() const;   // For testing only
 };
 
 #endif 

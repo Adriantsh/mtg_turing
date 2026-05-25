@@ -10,21 +10,20 @@
 class Zone {
 private:
     std::vector<Permanent*> board;
-    int idsUsed;
-    int numPerms;
 public:
     Zone();
     ~Zone();
     void addPermanent(Permanent* perm);
-    void removePermanent(int id);
+    void removePermanent(int index);
     void buffCreaturesType(int amt, std::string);
     void buffCreaturesNotType(int amt, std::string);
-    void copyPermanentAt(int id, Permanent& newPerm);
+    void copyPermanentAt(int index, Permanent* permPtr);
     void typalImply(std::string type1, std::string type2);
     void display() const;
-    bool isDead(int id);
-    bool isToken(int id);
-    int getNumPerms();
+    bool isDead(int index);
+    bool isToken(int index);
+    int getNumPerms() const;
+    const std::vector<Permanent*>& getBoard() const;   // For testing only
 };
 
 #endif

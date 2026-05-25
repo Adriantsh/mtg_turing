@@ -37,8 +37,11 @@ bool Permanent::isType(std::string testType) const {
 }
 
 bool Permanent::isSubtype(std::string subtype) const {
-    // TODO: implement later
-    return true;
+    if (subtypes.count(subtype) > 0) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 void Permanent::addSubtype(std::string subtype) {
@@ -51,4 +54,8 @@ bool Permanent::isToken() const {
 
 int Permanent::getToughness() const {
     return 0;
+}
+
+int Permanent::getNumSubtypes() const {
+    return subtypes.size();
 }

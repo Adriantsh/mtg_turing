@@ -47,5 +47,6 @@ add_executable(tests tests/test_main.cpp)
 target_link_libraries(tests mtg_lib)
 
 # Register tests with CTest
-add_test(NAME RecipeTests COMMAND tests)
+add_test(NAME MtgTests COMMAND tests)
+
 

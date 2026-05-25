@@ -11,14 +11,15 @@ Game::~Game() {}
 void Game::loadBoardstate(std::string fileName) {
 
     std::ifstream inFile;
-    inFile.open(fileName);
-
     std::string currentString;
     std::string permType;
     std::set<std::string> permSubtypes;
     int toughness = 0;
     std::string zone;
     bool isToken;
+
+    inFile.open(fileName);
+    if (!inFile.is_open()) throw FileNotFound();
 
     bool moreStrings = true;
     
@@ -87,4 +88,14 @@ void Game::run(Action initialAction, int maxTriggers, std::string outputFile) {
 int Game::getNumActions() const {
     return 0;
     // TODO: implement later
+}
+
+
+// For testing only
+const Zone& Game::getBattle() const {
+    return battlefield;
+}  
+
+const Zone& Game::getGrave() const {
+    return graveyard;
 }
