@@ -14,7 +14,8 @@ public:
     Creature(std::string type, std::set<std::string> subtypes, bool isToken, int toughness);
     ~Creature();
     virtual int getToughness() const override;
-    void incrementToughness(int amt);
+    void incrementToughness(int amt) override;
+    Permanent* clone() const override;
 };
 
 #endif

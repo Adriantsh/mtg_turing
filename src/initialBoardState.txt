@@ -1,5 +1,3 @@
 Creature 1 t Bear ; b
 Creature 2 t Bear Cat ; b 
-Artifact n ; b
-Artifact n ; g
-Creature 3 n Cat ; g
+Creature 3 n Bear Cat Dog ; b

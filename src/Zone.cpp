@@ -15,23 +15,35 @@ void Zone::addPermanent(Permanent* permPtr) {
     board.push_back(permPtr);
 }
 
-void Zone::removePermanent(int id) {
+void Zone::removePermanent(int index) {
+    if (index < 0 || index >= board.size()) return;
+
+    delete board[index];
+    board.erase(board.begin() + index);
+}
+
+void Zone::buffCreatureType(std::string subtype, int amt) {
+    for (auto perm : board) {
+        if (perm->isSubtype(subtype) && perm->isCreature()) {
+            perm->incrementToughness(amt);
+        }
+    }
+}
+
+void Zone::buffCreatureNotType(std::string, int amt) {
     // TODO: implement later
 }
 
-void Zone::buffCreaturesType(int amt, std::string) {
-    // TODO: implement later
+Permanent* Zone::copyPermanentAt(int index) const{
+     return board[index]->clone();
 }
 
-void Zone::buffCreaturesNotType(int amt, std::string) {
-    // TODO: implement later
-}
-void Zone::copyPermanentAt(int id, Permanent* permPtr) {
-    // TODO: implement later
-}
-
-void Zone::typalImply(std::string type1, std::string type2) {
-    // TODO: implement later    
+void Zone::implySubtype(std::string subtype1, std::string subtype2) {
+    for (auto perm : board) {
+        if (perm->isSubtype(subtype1)) {
+            perm->addSubtype(subtype2);
+        }
+    }
 }
 
 void Zone::display() const {
@@ -66,12 +78,15 @@ void Zone::display() const {
     }
 }
 
-bool Zone::isDead(int id) {
-    return true;
-    // TODO: implement later  
+bool Zone::isCreature(int index) const {
+    return board[index]->isCreature();
 }
 
-bool Zone::isToken(int index) {
+bool Zone::isDead(int index) const {
+    return (board[index]->getToughness() <= 0);
+}
+
+bool Zone::isToken(int index) const {
     return board[index]->isToken();
 }
 
@@ -82,3 +97,4 @@ int Zone::getNumPerms() const {
 const std::vector<Permanent*>& Zone::getBoard() const {
     return board;
 }
+
