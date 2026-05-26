@@ -100,6 +100,7 @@ int Game::getNumActions() const {
 void Game::implySubtype(std::string subtype1, std::string subtype2) {
     battlefield.implySubtype(subtype1, subtype2);
 }
+
 void Game::buffSubtype(std::string subtype, int amt) {
     battlefield.buffCreatureType(subtype, amt);
 }

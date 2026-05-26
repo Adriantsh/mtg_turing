@@ -1,0 +1,3 @@
+Creature 1 n Bear ; b
+Creature 2 n Bear Cat ; b 
+Creature 3 n Bear Cat Dog ; b
