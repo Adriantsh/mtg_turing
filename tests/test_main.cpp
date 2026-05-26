@@ -52,8 +52,6 @@ bool test_bad_file() {
         return true;
     }
     return false;
-
-    std::cout << "Flag";
 }
 
 bool test_buff_creatures() {
@@ -98,7 +96,6 @@ bool test_remove_dead_creatures() {
     game.loadBoardstate(board);
     game.buffSubtype("Bear", -1);
     game.destroyDeadCreatures();
-    game.display();
 
     const std::vector<Permanent*> battle = game.getBattle().getBoard();
     const std::vector<Permanent*> grave = game.getGrave().getBoard();
@@ -118,6 +115,7 @@ int main() {
     if (!test_empty_boardstate()) return 1;
     if (!test_bad_file()) return 1;
     if (!test_buff_creatures()) return 1;
+    if (!test_add_subtype_creatures()) return 1;
     if (!test_remove_dead_creatures()) return 1;
 
     std::cout << "\nAll tests completed." << std::endl;

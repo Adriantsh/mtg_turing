@@ -16,7 +16,7 @@ void Zone::addPermanent(Permanent* permPtr) {
 }
 
 void Zone::removePermanent(int index) {
-    if (index < 0 || index >= board.size()) return;
+    if (index < 0 || index >= (int)board.size()) return;
 
     delete board[index];
     board.erase(board.begin() + index);
