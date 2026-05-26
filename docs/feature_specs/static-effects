@@ -1,0 +1,39 @@
+# Static Effects — Spec
+ 
+## Problem statement
+The user can add static effects that do one of two things:
+Buff: All creatures of subtype X get +X
+Type Change: All creatures of subtype X are also subtype Y
+There is also a removeDead function that destroys all creatures with toughness 0 or less. 
+It is called after the initial boardstate is created.
+If those creatures are tokens, they disappear, however if not they are moved to the graveyard.
+
+## Types involved
+- Game: (loadBoardstate, add map for buffs, set of pairs for type changes)
+- Zone: (removePermanent, buffCreaturesType, copyPermanentAt, typalImply)
+
+## Public interface
+- void buffCreaturesType(int amt, std::string);
+  // applies the buffs in the map of buffs that Game owns
+- void typalImply(std::string type1, std::string type2);
+  // applies type changes in set of type changes
+ 
+## Inputs and outputs
+- Input: Buff: creature subtype
+         Typechange: creature subtype1 creature subtype2
+- Output: No output, just update of battlefield and graveyard
+ 
+## Edge cases
+- Creatures of buffed type doesn't exist
+- Type change tries to change creature type to the same creature type.
+- Creature type a -> creature type b and creature type b -> creature type c;
+- No dead creatures to remove.
+ 
+## Three tests (English version)
+- Normal: type change, then debuff changed type, then remove dead creature;
+- Boundary: Creature type a -> creature type b and creature type b -> creature type c;
+- Edge: No valid type changes or buffed added to input file.
+
+## Design Decisions
+Instead of using a set<pair<string,string>> for the type changes, will be using a vector,
+since the order in which they are applied affects the types that creatures become.

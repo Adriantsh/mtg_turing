@@ -13,5 +13,9 @@ int Creature::getToughness() const {
 }
 
 void Creature::incrementToughness(int amt) {
+    toughness += amt;
+}
 
+Permanent* Creature::clone() const {
+    return new Creature(*this);
 }

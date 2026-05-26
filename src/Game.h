@@ -32,6 +32,9 @@ public:
     int getNumActions() const;
     const Zone& getBattle() const;   // For testing only
     const Zone& getGrave() const;   // For testing only
+
+    void implySubtype(std::string subtype1, std::string subtype2);
+    void buffSubtype(std::string subtype, int amt);
 };
 
 #endif 

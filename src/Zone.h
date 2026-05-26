@@ -15,13 +15,14 @@ public:
     ~Zone();
     void addPermanent(Permanent* perm);
     void removePermanent(int index);
-    void buffCreaturesType(int amt, std::string);
-    void buffCreaturesNotType(int amt, std::string);
-    void copyPermanentAt(int index, Permanent* permPtr);
-    void typalImply(std::string type1, std::string type2);
+    void buffCreatureType(std::string, int amt);
+    void buffCreatureNotType(std::string, int amt);
+    Permanent* copyPermanentAt(int index) const;
+    void implySubtype(std::string subtype1, std::string subtype2);
     void display() const;
-    bool isDead(int index);
-    bool isToken(int index);
+    bool isDead(int index) const;
+    bool isToken(int index) const;
+    bool isCreature(int index) const;
     int getNumPerms() const;
     const std::vector<Permanent*>& getBoard() const;   // For testing only
 };

@@ -10,6 +10,8 @@ int main() {
     Game game;
     game.loadBoardstate(initialBoardFile);
     game.display();
+    game.implySubtype("Cat", "Lion");
+    game.display();
 
     // Action initialAction;
 

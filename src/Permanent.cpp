@@ -37,25 +37,31 @@ bool Permanent::isType(std::string testType) const {
 }
 
 bool Permanent::isSubtype(std::string subtype) const {
-    if (subtypes.count(subtype) > 0) {
-        return true;
-    } else {
-        return false;
-    }
+    return (subtypes.count(subtype) > 0);
 }
 
 void Permanent::addSubtype(std::string subtype) {
-    // TODO: implement later
+    subtypes.insert(subtype);
 }
 
 bool Permanent::isToken() const {
     return token; 
 }
 
+// Overwritten in Creature class
 int Permanent::getToughness() const {
     return 0;
 }
+void Permanent::incrementToughness(int amt) {}
 
 int Permanent::getNumSubtypes() const {
     return subtypes.size();
+}
+
+Permanent* Permanent::clone() const {
+    return new Permanent(*this);
+}
+
+bool Permanent::isCreature() const {
+    return (this->isType("Creature"));
 }

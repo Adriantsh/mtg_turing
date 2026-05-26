@@ -78,7 +78,14 @@ void Game::display() const {
 }
 
 void Game::destroyDeadCreatures() {
-    // TODO: implement later
+    for (int i = battlefield.getNumPerms() - 1; i >= 0; i--) {
+        if (battlefield.isCreature(i) && battlefield.isDead(i)) {
+            if (!battlefield.isToken(i)) {
+                graveyard.addPermanent(battlefield.copyPermanentAt(i));
+            }
+            battlefield.removePermanent(i);
+        }
+    }
 }
 
 void Game::run(Action initialAction, int maxTriggers, std::string outputFile) {
@@ -90,12 +97,20 @@ int Game::getNumActions() const {
     // TODO: implement later
 }
 
+void Game::implySubtype(std::string subtype1, std::string subtype2) {
+    battlefield.implySubtype(subtype1, subtype2);
+}
+
+void Game::buffSubtype(std::string subtype, int amt) {
+    battlefield.buffCreatureType(subtype, amt);
+}
+
 
 // For testing only
 const Zone& Game::getBattle() const {
     return battlefield;
 }  
-
 const Zone& Game::getGrave() const {
     return graveyard;
 }
+

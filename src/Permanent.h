@@ -24,8 +24,11 @@ public:
     bool isSubtype(std::string subtype) const;
     void addSubtype(std::string subtype);
     bool isToken() const;
+    virtual void incrementToughness(int amt);
     virtual int getToughness() const;
     int getNumSubtypes() const;
+    virtual Permanent* clone() const;
+    bool isCreature() const;
 };
 
 #endif
