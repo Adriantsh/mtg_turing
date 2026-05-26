@@ -13,10 +13,12 @@ void Game::loadBoardstate(std::string fileName) {
     std::ifstream inFile;
     std::string currentString;
     std::string permType;
+    std::string targetPermType;
     std::set<std::string> permSubtypes;
     int toughness = 0;
     std::string zone;
     bool isToken;
+    int buffAmount = 0;
 
     inFile.open(fileName);
     if (!inFile.is_open()) throw FileNotFound();
@@ -25,43 +27,63 @@ void Game::loadBoardstate(std::string fileName) {
     
     moreStrings = static_cast<bool>(inFile >> currentString);
     while (moreStrings) {
-        permType = currentString;
-
-        if (permType == "Creature") {
+        if (currentString == "ADD_PERMANENT") {
             inFile >> currentString;
-            toughness = std::stoi(currentString);
-        }
 
-        inFile >> currentString;
+            permType = currentString;
 
-        if (currentString == "t") {
-            isToken = true;
-        } else if (currentString == "n") {
-            isToken = false;
-        }
+            if (permType == "Creature") {
+                inFile >> currentString;
+                toughness = std::stoi(currentString);
+            }
 
-        inFile >> currentString;
-        permSubtypes.clear();
-        while (currentString != ";") {
-            permSubtypes.insert(currentString);
             inFile >> currentString;
-        }
 
-        inFile >> currentString;
-        zone = currentString;
+            if (currentString == "t") {
+                isToken = true;
+            } else if (currentString == "n") {
+                isToken = false;
+            }
 
-        Permanent* permPtr = nullptr;
+            inFile >> currentString;
+            permSubtypes.clear();
+            while (currentString != ";") {
+                permSubtypes.insert(currentString);
+                inFile >> currentString;
+            }
 
-        if (permType == "Creature") {
-            permPtr = new Creature(permType, permSubtypes, isToken, toughness);
-        } else {
-            permPtr = new Permanent(permType, permSubtypes, isToken);
-        }
+            inFile >> currentString;
+            zone = currentString;
 
-        if (zone == "b") {
-            battlefield.addPermanent(permPtr);
-        } else if (zone == "g") {
-            graveyard.addPermanent(permPtr);
+            Permanent* permPtr = nullptr;
+
+            if (permType == "Creature") {
+                permPtr = new Creature(permType, permSubtypes, isToken, toughness);
+            } else {
+                permPtr = new Permanent(permType, permSubtypes, isToken);
+            }
+
+            if (zone == "b") {
+                battlefield.addPermanent(permPtr);
+            } else if (zone == "g") {
+                graveyard.addPermanent(permPtr);
+            }
+        } else if (currentString == "BUFF") {
+            inFile >> currentString;
+            permType = currentString;
+
+            inFile >> currentString;
+            buffAmount = std::stoi(currentString);
+
+            addBuff({ permType, buffAmount });
+        } else if (currentString == "IMPLY_SUBTYPE") {
+            inFile >> currentString;
+            permType = currentString;
+
+            inFile >> currentString;
+            targetPermType = currentString;
+
+            addSubtypeImply({ permType, targetPermType });
         }
 
         moreStrings = static_cast<bool>(inFile >> currentString);
@@ -105,6 +127,25 @@ void Game::buffSubtype(std::string subtype, int amt) {
     battlefield.buffCreatureType(subtype, amt);
 }
 
+void Game::addBuff(std::pair<std::string, int> buff) {
+    buffs.push_back(buff);
+}
+
+void Game::addSubtypeImply(std::pair<std::string, std::string> sImply) {
+    subtype_implies.push_back(sImply);
+}
+
+void Game::applyBuffs() {
+    for (auto buff : buffs) {
+        battlefield.buffCreatureType(buff.first, buff.second);
+    }
+}
+
+void Game::implySubtypes() {
+    for (auto sImply : subtype_implies) {
+        battlefield.implySubtype(sImply.first, sImply.second);
+    }
+}
 
 // For testing only
 const Zone& Game::getBattle() const {
