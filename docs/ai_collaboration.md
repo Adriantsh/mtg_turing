@@ -50,3 +50,29 @@ When the destructor for the `Zone` class is called it wouldn't know to delete th
 When I chose to implement this feature, I realized I was implementing three separate features at once. Each of these features needed methods in the `Zone` and `Game` classes, as well as changes to the `loadBoardState` function. Trying to get the AI to update all of these different parts of my code at once was not a good workflow.
 
 In the future, I would focus in on one smaller area and ask the AI to focus in on that feature.
+
+## Fresh-conversation review
+
+> Suggestion: Dead code after `return` in `test_bad_file`
+
+Accepted: Removed the dead code.
+
+> Suggestion: `test_add_subtype_creatures` is never called in `main`
+
+Accepted: Call the `test_add_subtype_creatures` function in `main`. Tests passed.
+
+> Suggestion: `removePermanent` signed/unsigned comparison
+
+Accepted: Cast `board.size()` to `int` using the suggested syntax `(int)board.size()`.
+
+> Suggestion: `implySubtype` is not associative, the order that it is called matters.
+
+Rejected: Magic has specific rules about the order, it is beyond the scope of this project to implement the full ruleset.
+
+> Suggestion: `Permanent::clone()` returns a base `Permanent`, not the derived type
+
+Rejected: Function works fine as overwritten function, a pure virtual function seems like unnecessary abstraction.
+
+> Suggestion: Spec drift with `buffCreaturesType` and `typalImply`
+
+Rejected. Decided to make other changes to function signature that made more sense.
