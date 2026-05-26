@@ -19,7 +19,10 @@ private:
     Zone battlefield;
     Zone graveyard;
     int numActions;
+    std::vector<std::pair<std::string, int>> buffs;
+    std::vector<std::pair<std::string, std::string>> subtype_implies;
 public:
+
     Game(); 
     ~Game();
 
@@ -35,6 +38,12 @@ public:
 
     void implySubtype(std::string subtype1, std::string subtype2);
     void buffSubtype(std::string subtype, int amt);
+
+    void addBuff(std::pair<std::string, int> buff);
+    void addSubtypeImply(std::pair<std::string, std::string> sImply);
+
+    void applyBuffs();
+    void implySubtypes();
 };
 
 #endif 

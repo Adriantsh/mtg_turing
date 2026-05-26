@@ -1,0 +1,3 @@
+ADD_PERMANENT Creature 1 t Cat ; b
+IMPLY_SUBTYPE Cat Dog
+IMPLY_SUBTYPE Dog Fish

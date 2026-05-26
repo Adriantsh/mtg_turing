@@ -1,2 +1,2 @@
-Creature 2 t Bear Cat ; b
-Artifact n ; g
+ADD_PERMANENT Creature 2 t Bear Cat ; b
+ADD_PERMANENT Artifact n ; g

@@ -53,7 +53,7 @@ void Zone::display() const {
               << std::left << std::setw(fieldWidth[2]) << "Toughness:"
               << std::left << std::setw(fieldWidth[3]) << "Token?"
               << "Subtypes:\n";
-    for (int i = 0; i < 70; i++)
+    for (int i = 0; i < 80; i++)
         std::cout << "-";
     std::cout << std::endl;
     if (!board.empty()) {

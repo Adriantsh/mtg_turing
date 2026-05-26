@@ -1,3 +1,8 @@
-Creature 1 t Bear ; b
-Creature 2 t Bear Cat ; b 
-Creature 3 n Bear Cat Dog ; b
+ADD_PERMANENT Creature 1 t Bear ; b
+ADD_PERMANENT Creature 2 t Bear Cat ; b
+ADD_PERMANENT Creature 3 n Bear Cat Dog ; b
+BUFF Bear 1
+BUFF Cat -1
+BUFF Dog 10
+IMPLY_SUBTYPE Cat Lion
+IMPLY_SUBTYPE Lion Tiger
